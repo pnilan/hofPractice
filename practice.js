@@ -96,6 +96,8 @@ var filterUserTweets = function(tweets, user) {
 // strings converted to uppercase letters.
 var upperCaseFruits = function (fruits) {
 
+  return _.map(fruits, function(fruit) { return fruit.toUpperCase(); });
+
 };
 
 // given an array of dessert objects, return a new array of objects
@@ -103,11 +105,24 @@ var upperCaseFruits = function (fruits) {
 // TIP: Items that contain flour are not gluten-free.
 var glutenFree = function (desserts) {
 
+  return _.map(desserts, function(dessert) {
+    if (dessert.ingredients.includes('flour')) {
+      dessert.glutenFree = false;
+    } else {
+      dessert.glutenFree = true;
+    }
+
+    return dessert;
+
+  });
+
 };
 
 // given an array of tweet objects, return a new array of strings
 // containing only the message properties.
 var allUserMessages = function(tweets) {
+
+  return _.map(tweets, function(tweet) { return tweet.message; });
 
 };
 
@@ -132,6 +147,11 @@ var allUserMessages = function(tweets) {
 
 */
 var applyCoupon = function (groceries, coupon) {
+
+  return _.map(groceries, function(item) {
+    item.salePrice = '$' + (item.price.slice(1) * (1 - coupon)).toFixed(2);
+    return item;
+  });
 
 };
 
